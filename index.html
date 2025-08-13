@@ -213,7 +213,8 @@
                 </div>
             </div>
             
-            <div id="visualization-area" class="mt-6 p-4 bg-slate-50 rounded-lg min-h-[200px] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+            <p id="viz-instructions" class="text-center text-slate-500 text-sm mb-2 hidden"></p>
+            <div id="visualization-area" class="mt-2 p-4 bg-slate-50 rounded-lg min-h-[200px] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
 
             <div class="mt-4">
                 <button id="clear-viz-btn" class="w-full px-4 py-2 bg-rose-100 text-rose-700 rounded-md font-semibold hover:bg-rose-200 transition">Clear Visualizer</button>
@@ -242,6 +243,7 @@
             const groupSizeInput = document.getElementById('group-size');
             const numGroupsInput = document.getElementById('num-groups');
             const visualizationArea = document.getElementById('visualization-area');
+            const vizInstructions = document.getElementById('viz-instructions');
             
             const messageBox = document.getElementById('message-box');
             const messageText = document.getElementById('message-text');
@@ -592,6 +594,7 @@
 
             const clearVisualizer = () => {
                 visualizationArea.innerHTML = '';
+                vizInstructions.classList.add('hidden');
                 groupSizeInput.value = '';
                 numGroupsInput.value = '';
                 revealedBlocksCount = 0;
@@ -618,6 +621,8 @@
                 }
 
                 visualizationArea.innerHTML = '';
+                vizInstructions.textContent = 'Click the blocks in order to reveal the numbers.';
+                vizInstructions.classList.remove('hidden');
                 revealedBlocksCount = 0;
 
                 for (let i = 1; i <= numGroups; i++) {
